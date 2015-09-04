@@ -15,9 +15,59 @@
 
     </head>
     <body>
+    	<div class = "container">
     	<h1> Hellow World</h1>
     	<!-- Button trigger modal -->
+<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
+  SignUP
+</button>
+<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#loginModal">
+  Log!n
+</button>
 
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel"> SignUP to keep track of your restaurants!</h4>
+      </div>
+      <div class="modal-body">
+  	</div>
+
+      <div class="modal-footer">
+      	<form id = "signupForm" method = "post" action "/signup">
+      	<input type="text" name="username" maxlength="20" required= "true" placeholder = "Pick A Name">
+   		 <input type= "text" name="password" placeholder = "S#per Se(ret 9assword">
+   		 <input type = "text" name= "zip" placeholder = "Z!P C#|)e">
+        <input type="submit" value= "S!gnUP" class="btn btn-primary"></button>
+    </form>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel"> Login! or never ever find a restaurant....EVER!</h4>
+      </div>
+      <div class="modal-body">
+  	</div>
+
+      <div class="modal-footer">
+      	<form id = "loginForm" method = "post" action "/login">
+      	<input type="text" name="username" maxlength="20" required= "true" placeholder = "Username">
+   		 <input type= "text" name="password" placeholder = "Password">
+        <input type="submit" value= "Log!n" class=" btn btn-primary"></button>
+    </form>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
 
 </body>
 </html>

@@ -14,6 +14,16 @@ app.get("/", function (req,res) {
 	res.sendFile(path.join(views, "index.html"))
 })
 
+
+
+app.post('/', function (req,res){
+	res.redirect("/home");
+})
+
+app.get('/home', function (req,res) {
+	res.sendFile(path.join(views, "home.html"))
+})
+
 app.listen(3000, function() {
 	console.log("Server is running on localhost:3000");
 })
