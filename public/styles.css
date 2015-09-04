@@ -1,7 +1,17 @@
 body {
 	background: gray;
 }
-
+.smlimg {
+  height: 43px;
+  width: 43px;
+  padding: 0px;
+}
+.smallnav {
+	width:50px;
+}
+.smallernav {
+	height: 70px;
+}
 .container {
 	background: gray;
 }
