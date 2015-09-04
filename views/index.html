@@ -16,7 +16,7 @@
     </head>
     <body>
     	<div class = "container">
-    	<h1> Hellow World</h1>
+    	<h1>Heyo</h1>
     	<!-- Button trigger modal -->
 <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
   SignUP
@@ -59,6 +59,7 @@
 
       <div class="modal-footer">
       	<form id = "loginForm" method = "post" action "/login">
+      	<input type = "hidden" name = "login" value = "true">
       	<input type="text" name="username" maxlength="20" required= "true" placeholder = "Username">
    		 <input type= "text" name="password" placeholder = "Password">
         <input type="submit" value= "Log!n" class=" btn btn-primary"></button>

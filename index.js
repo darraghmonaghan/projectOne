@@ -18,11 +18,27 @@ app.get("/", function (req,res) {
 
 app.post('/', function (req,res){
 	console.log(req.body)
-	db.Profile.createSecure(req.body.username, req.body.password, req.body.zip, function(err, user){
-		if(err){return console.log(err);}
-		else{console.log(user)}
-	})
-	res.redirect("/home");
+	if(req.body.login === "true") {
+		console.log("true")
+		db.Profile.authenticate(req.body.username, req.body.password, function (err, user){
+			if(err){
+				console.log(err);
+				res.redirect("/")}
+			else{
+				console.log("logged in");
+				res.redirect("/home");}
+		})
+	}
+	else{
+		db.Profile.createSecure(req.body.username, req.body.password, req.body.zip, function(err, user){
+			if(err){return console.log(err);}
+			else{
+				console.log(user);
+				res.redirect("/home");
+			}
+		})
+	}
+	
 })
 
 app.get('/home', function (req,res) {
