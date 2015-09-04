@@ -18,6 +18,10 @@ app.get("/", function (req,res) {
 
 app.post('/', function (req,res){
 	console.log(req.body)
+	db.Profile.createSecure(req.body.username, req.body.password, req.body.zip, function(err, user){
+		if(err){return console.log(err);}
+		else{console.log(user)}
+	})
 	res.redirect("/home");
 })
 

@@ -10,17 +10,19 @@ var Restaurant = new Schema({
 var ProfileSchema = new Schema({
 	name: String, 
 	passwordDigest: String,
+	zip: Number,
 	createdAt: Date,
 	profileFavs: [Restaurant]
 
 })
 
-ProfileSchema.statics.createSecure = function(name, password, cb) {
+ProfileSchema.statics.createSecure = function(name, password, zip, cb) {
 	var _this = this;
 	bcrypt.hash(password, 10, function (err,hash){
 		var user = {
 			name: name,
 			passwordDigest: hash,
+			zip: zip,
 			createdAt: Date.now()
 		};
 		_this.create(user, cb)
