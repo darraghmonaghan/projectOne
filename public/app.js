@@ -8,6 +8,6 @@ $(document).ready( function (){
  //    data: {
  //        oauth_callback: 'http://www.ddo.me'
  //    }
-};
-	})
+
+
 	})
