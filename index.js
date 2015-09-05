@@ -1,7 +1,11 @@
 var express = require('express'),
 	bodyParser = require('body-parser'),
 	path = require('path'),
+	session = require('express-sessions'),
+	
 	db = require('./models')
+
+
 
 var app = express(),
 	views = path.join(process.cwd(), "views");
@@ -19,7 +23,6 @@ app.get("/", function (req,res) {
 app.post('/', function (req,res){
 	console.log(req.body)
 	if(req.body.login === "true") {
-		console.log("true")
 		db.Profile.authenticate(req.body.username, req.body.password, function (err, user){
 			if(err){
 				console.log(err);
