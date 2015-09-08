@@ -5,6 +5,13 @@ var express = require('express'),
 	
 	db = require('./models')
 
+var yelp = require("yelp").createClient({
+  consumer_key: "s3lPNTsNXkslKK6OOgq3fQ", 
+  consumer_secret: "-frcd7rejOgUIURceGKNYlxOqEk",
+  token: "jdfwlZuFMbhEPCAYvamHUCySlYg-aSaV",
+  token_secret: "PflgYZRBFapq4s6aFwlhFIhikb4"
+});
+
 
 
 var app = express(),
@@ -43,6 +50,11 @@ app.post('/', function (req,res){
 	}
 	
 })
+
+// 	yelp.search({term: "food", location: "San Francisco"}, function(error, data) {
+//   console.log(error);
+//   console.log(data);
+// });
 
 app.get('/home', function (req,res) {
 	res.sendFile(path.join(views, "home.html"))
