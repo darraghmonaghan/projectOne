@@ -46,7 +46,7 @@ ProfileSchema.methods.checkPassword = function(password) {
 }
 
 
-var Restaurant = mongoose.model('Restuarant', Restaurant);
+var Restaurant = mongoose.model('Restaurant', Restaurant);
 
 
 var Profile = mongoose.model('Profile', ProfileSchema);
