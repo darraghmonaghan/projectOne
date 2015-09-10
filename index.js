@@ -133,6 +133,16 @@ app.get('/api/home/:location', function (req,res) {
 
 	});
 })
+
+app.get('/query/:location/:type', function (req,res){
+	console.log(req.params)
+	var location = req.params.location;
+	var type = req.params.type;
+	var data = yelp.search({term: "food", location: location, category_filter: type}, function(err,data){
+		if(err){console.log(err);}
+		res.send(data)
+	})
+})
 app.get('/home', function (req,res) {
 	req.currentUser(function(err,user){
 		console.log(user)

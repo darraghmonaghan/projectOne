@@ -1,6 +1,17 @@
 var locat = "San Francisco";
 var restInfo = {};
+var ind = [];
+var rad;
+var questions_index;
+var questions = [
+	{question: "Do you Want a bagel?", key: "bagels"},
+	{key:"beer_and_wine", question: "Something to drink? ... Beer?... Wine?"},
+	{key:"foodtrucks", question: "Something quick? try a food truck?"},
+	{key:"churros", question: "Churros?"},
+	{key:"cheese", question: "do you like cheese?"},
+	{key:"bakeries", question: "Sweet tooth? Check out a bakery?"},
 
+]
 $(document).ready( function (){
 
 	$('#logBtn').click(function(e){
@@ -13,7 +24,7 @@ $(document).ready( function (){
 
 	$('#radiusBtn').click(function(e){
 		e.preventDefault();
-		var rad = $("#rad").val();
+		rad = $("#rad").val();
 		$.get('radChange/' +locat+ "/" + rad, function(res){
 			console.log(res);
 			infoHandler(res);
@@ -21,6 +32,27 @@ $(document).ready( function (){
 		$('#radiusBtn').val('');
 	})
 
+	$("#questionBtn").click(function (e){
+		
+		questionPopulate();
+	})
+
+	$('#nahBtn').click(function(e){
+		$("#question").empty();
+		questionPopulate();
+
+	})
+
+	$('#yupBtn').click(function(e){
+		var type = questions[questions_index].key;
+		$.get("query/" + locat+'/'+type, function (res){
+			infoHandler(res);
+		})
+		$("#question").empty();
+
+
+
+	})
 
 
 	$("#profileBtn").click(function(e){
@@ -66,9 +98,8 @@ function renderRandom(restInfo){
 }
 function infoHandler (res) {
 			restInfo = {};
-
-			var index = Math.floor(Math.random() * (res.businesses.length - 1));
-			console.log(index)
+			console.log(res)
+			var index = Math.floor(Math.random() * res.businesses.length -1);
 			restInfo.name = res.businesses[index].name;
 			restInfo.rating = res.businesses[index].rating;
 			restInfo.reviews = res.businesses[index].review_count;
@@ -77,6 +108,23 @@ function infoHandler (res) {
 			return(restInfo)
 
 		}
+
+function questionPopulate(){
+
+		questions_index = Math.floor(Math.random() * questions.length);
+		if (ind.length === questions.length){ind = []; questionPopulate();}
+		else if(ind.indexOf(questions_index) === -1){
+				ind.push(questions_index);
+				var data = { query: questions[questions_index].question}
+				var template = _.template($("#questionTemplate").html())
+				var questHtml = template(questions[questions_index]);
+				console.log(questHtml);
+				$('#question').append(questHtml);
+			} 
+			else {
+				questionPopulate();
+			}
+	}
 
 
 	

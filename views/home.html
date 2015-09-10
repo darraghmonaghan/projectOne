@@ -92,7 +92,12 @@
             <h4 class="modal-title" id="myModalLabel">Still can't decide ...</h4>
           </div>
           <div class="modal-body">
-           
+            <ul id = "question">
+            </ul>
+            <script type="text/template" id="questionTemplate">
+            <li><%= question %></li>
+            </script>
+
           <!--   <ul id = "profileFavs">
             </ul>
             <script type="text/template" id="pfTemplate">
@@ -101,8 +106,8 @@
 
           </div> -->
           <div class="modal-footer">
-              <button type="btn" value= "Nah" class=" btn btn-default">Nah</button>
-             <button type="btn" value= "Yup" class=" btn btn-default">Yup</button>
+              <button type="btn" id= "nahBtn" class=" btn btn-default">Nah</button>
+             <button type="btn" id= "yupBtn" class=" btn btn-default" data-dismiss= "modal">Yup</button>
             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
             <!--  <button type="button" class="btn btn-primary">Save changes</button> -->
           </div>
