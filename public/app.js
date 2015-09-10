@@ -11,6 +11,16 @@ $(document).ready( function (){
 
 	})
 
+	$('#radiusBtn').click(function(e){
+		e.preventDefault();
+		var rad = $("#rad").val();
+		$.get('radChange/' +locat+ "/" + rad, function(res){
+			console.log(res);
+			infoHandler(res);
+		})
+		$('#radiusBtn').val('');
+	})
+
 
 
 	$("#profileBtn").click(function(e){
@@ -31,11 +41,6 @@ $(document).ready( function (){
 			infoHandler(res);
 		}) 
 		
-	})
-
-	$('#moneySubmit').click(function(e){
-		e.preventDefault();
-
 	})
 
 	$('#locbtn').click(function(e){
@@ -61,7 +66,9 @@ function renderRandom(restInfo){
 }
 function infoHandler (res) {
 			restInfo = {};
-			var index = Math.floor(Math.random() * 20);
+
+			var index = Math.floor(Math.random() * (res.businesses.length - 1));
+			console.log(index)
 			restInfo.name = res.businesses[index].name;
 			restInfo.rating = res.businesses[index].rating;
 			restInfo.reviews = res.businesses[index].review_count;

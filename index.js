@@ -105,11 +105,19 @@ app.get('/api/profile', function(req,res){
 		res.send(profileInfo)
 	})
 })
-app.get("/distance", function (req,res){
+app.get("/radChange/:location/:distance", function (req,res){
+	console.log(req.params)
+	var location= req.params.location
+	var distance = req.params.distance
+	var data = yelp.search({term: "food", location: location, radius_filter: distance}, function(err,data){
+		if(err){console.log(err);}
+		console.log(data)
+		res.send(data)
+	})
 })
 
 app.get('/change/:location', function (req,res){
-	var location = req.params.location;
+	var location = (req.params.location);
 	console.log(location);
 	var data = yelp.search({term: "food", location: location}, function (err, data){
 		if(err){console.log(err);};
