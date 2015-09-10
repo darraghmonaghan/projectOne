@@ -30,16 +30,16 @@
             <div class="form-group">
               <input type="text" class="form-control smallnav" id = "loc" placeholder="City or Neighborhood">
             </div>
-            <button id= "locbtn" type="btn" class="btn btn-default">!</button>
+            <button id= "locbtn" type="btn" class="btn btn-default">submit</button>
           </form>
           <form class="navbar-form navbar-right " role="search">
             <div class="form-group">
-              <input type="text" class="form-control smallnav" id = "rad" placeholder="Radius?">
+              <input type="text" class="form-control smallnav" id = "rad" placeholder="How far?">
             </div>
-            <button id= "radiusBtn" type="btn" class="btn btn-default">!</button>
+            <button id= "radiusBtn" type="btn" class="btn btn-default">submit</button>
           </form>
-          </nav>
-       
+        </nav>
+        
         <div class="round-button"><div class="round-button-circle"><a id = "random" class="round-button">Random!</a></div></div>
 
         <hr>
@@ -51,14 +51,17 @@
       <li><%= display_address %></li>
       </script>
 
-      <form class = "btn btn-default" method = "post" action = "/logout">
-        <input type = "submit" value = "logout">
-      </form>
-      <button type="btn" id = "profileBtn" class = "btn btn-primary btn-lg" data-toggle = "modal" data-target = "#profileModal" > ... </button>
+      
+      <button type="btn" id = "profileBtn" class = "btn btn-primary btn-lg" data-toggle = "modal" data-target = "#profileModal" ><span class = "glyphicon glyphicon-th-list"></span></button>
       
     </div>
-    <button type= "btn" id = "logBtn" class= "btn btn-primary btn-lg"> Log </button>
-    <button type= "btn" id = "questionBtn" data-toggle = "modal" data-target = "#questionsModal" class= "btn btn-primary btn-lg"> ?s </button>
+    <button type= "btn" id = "logBtn" class= "btn btn-primary btn-lg"><span class = "glyphicon glyphicon-pushpin"></span></button>
+    <button type= "btn" id = "questionBtn" data-toggle = "modal" data-target = "#questionsModal" class= "btn btn-primary btn-lg"><span class = "glyphicon glyphicon-cutlery"></span></button>
+
+    <hr>
+    <form  method = "post" action = "/logout">
+      <input type = "submit" value = "logout" class = "btn btn-primary">
+    </form>
 
     <!-- Modal -->
     <div class="modal fade" id="profileModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
@@ -85,18 +88,18 @@
     </div>
   </div>
   <div class="modal fade" id="questionsModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            <h4 class="modal-title" id="myModalLabel">Still can't decide ...</h4>
-          </div>
-          <div class="modal-body">
-            <ul id = "question">
-            </ul>
-            <script type="text/template" id="questionTemplate">
-            <li><%= question %></li>
-            </script>
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title" id="myModalLabel">Still can't decide ...</h4>
+        </div>
+        <div class="modal-body">
+          <ul id = "question">
+          </ul>
+          <script type="text/template" id="questionTemplate">
+          <li><%= question %></li>
+          </script>
 
           <!--   <ul id = "profileFavs">
             </ul>
@@ -106,8 +109,8 @@
 
           </div> -->
           <div class="modal-footer">
-              <button type="btn" id= "nahBtn" class=" btn btn-default">Nah</button>
-             <button type="btn" id= "yupBtn" class=" btn btn-default" data-dismiss= "modal">Yup</button>
+            <button type="btn" id= "nahBtn" class=" btn btn-default"><span class= "glyphicon glyphicon-remove"></button>
+            <button type="btn" id= "yupBtn" class=" btn btn-default" data-dismiss= "modal"><span class ="glyphicon glyphicon-ok"></span></button>
             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
             <!--  <button type="button" class="btn btn-primary">Save changes</button> -->
           </div>
@@ -115,6 +118,8 @@
       </div>
     </div>
   </div>
+</div>
+
 
 </body>
 </html>

@@ -7,7 +7,6 @@ var questions = [
 	{question: "Do you Want a bagel?", key: "bagels"},
 	{key:"beer_and_wine", question: "Something to drink? ... Beer?... Wine?"},
 	{key:"foodtrucks", question: "Something quick? try a food truck?"},
-	{key:"churros", question: "Churros?"},
 	{key:"cheese", question: "do you like cheese?"},
 	{key:"bakeries", question: "Sweet tooth? Check out a bakery?"},
 
@@ -33,7 +32,7 @@ $(document).ready( function (){
 	})
 
 	$("#questionBtn").click(function (e){
-		
+		$("#question").empty();
 		questionPopulate();
 	})
 
@@ -48,7 +47,7 @@ $(document).ready( function (){
 		$.get("query/" + locat+'/'+type, function (res){
 			infoHandler(res);
 		})
-		$("#question").empty();
+		
 
 
 
@@ -69,7 +68,6 @@ $(document).ready( function (){
 	$('#random').click( function(e){
 		console.log(locat)
 		$.get('api/home/' + locat, function (res){
-			console.log(res)
 			infoHandler(res);
 		}) 
 		
@@ -98,7 +96,6 @@ function renderRandom(restInfo){
 }
 function infoHandler (res) {
 			restInfo = {};
-			console.log(res)
 			var index = Math.floor(Math.random() * res.businesses.length -1);
 			restInfo.name = res.businesses[index].name;
 			restInfo.rating = res.businesses[index].rating;

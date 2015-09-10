@@ -12,7 +12,7 @@ body {
 	background:-ms-linear-gradient(top, #768d87 5%, #6c7c7c 100%);
 	background:linear-gradient(to bottom, #768d87 5%, #6c7c7c 100%);
 	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#768d87', endColorstr='#6c7c7c',GradientType=0);
-	background-color:#768d87;
+	background-color:#6c7c7c;
 	-moz-border-radius:5px;
 	-webkit-border-radius:5px;
 	border-radius:5px;
@@ -35,7 +35,7 @@ body {
 	background:-ms-linear-gradient(top, #6c7c7c 5%, #768d87 100%);
 	background:linear-gradient(to bottom, #6c7c7c 5%, #768d87 100%);
 	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#6c7c7c', endColorstr='#768d87',GradientType=0);
-	background-color:#6c7c7c;
+	background-color:#768d87;
 }
 .myButton:active {
 	position:relative;
@@ -68,7 +68,7 @@ body {
 	border:4px solid #cfdcec;
     overflow:hidden;
     
-    background: red; 
+    background: black; 
     box-shadow: 0 0 3px gray;
 }
 .round-button-circle:hover {
