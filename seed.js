@@ -15,14 +15,21 @@ var db = require('./models')
 // 		});
 		
 // 		return console.log(user);
-// 		})
-// 	}
+// // 		})
+// // // 	}
 
-function hey () {
-	db.Profile.find({},function(err,user){
-		if(err){return console.log(err);}
-		console.log(user);
-	})
-}
+// function hey () {
+// 	db.Profile.findOne({name: "tori"},function(err,user){
+// 		if(err){return console.log(err);}
+// 		console.log(user.name)
+// 		user.profileFavs = [];
+// 		user.save(function(err,success) {
+// 			if(err){return console.log(err);}
+// 			console.log('success');
+// 		})
+// 		console.log(user);
+
+// 	})
+// }
 
 hey();

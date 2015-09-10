@@ -1,21 +1,21 @@
 var express = require('express'),
-	bodyParser = require('body-parser'),
-	path = require('path'),
-	session = require('express-session'),
-	
-	db = require('./models')
+bodyParser = require('body-parser'),
+path = require('path'),
+session = require('express-session'),
+
+db = require('./models')
 
 var yelp = require("yelp").createClient({
-  consumer_key: "s3lPNTsNXkslKK6OOgq3fQ", 
-  consumer_secret: "-frcd7rejOgUIURceGKNYlxOqEk",
-  token: "jdfwlZuFMbhEPCAYvamHUCySlYg-aSaV",
-  token_secret: "PflgYZRBFapq4s6aFwlhFIhikb4"
+	consumer_key: "s3lPNTsNXkslKK6OOgq3fQ", 
+	consumer_secret: "-frcd7rejOgUIURceGKNYlxOqEk",
+	token: "jdfwlZuFMbhEPCAYvamHUCySlYg-aSaV",
+	token_secret: "PflgYZRBFapq4s6aFwlhFIhikb4"
 });
 
 
 
 var app = express(),
-	views = path.join(process.cwd(), "views");
+views = path.join(process.cwd(), "views");
 
 app.use(bodyParser.urlencoded({extended: true}));
 app.use("/static", express.static("public"));
@@ -53,12 +53,12 @@ app.post('/', function (req,res){
 			if(err){
 				console.log(err);
 				res.redirect("/")}
-			else{
-				console.log("logged in");
-				req.login(user)
-				console.log(req.session.userId)
-				res.redirect("/home");}
-		})
+				else{
+					console.log("logged in");
+					req.login(user)
+					console.log(req.session.userId)
+					res.redirect("/home");}
+				})
 	}
 	else{
 		db.Profile.createSecure(req.body.username, req.body.password, req.body.zip, function(err, user){
@@ -75,21 +75,25 @@ app.post('/', function (req,res){
 
 app.post('/profileFavs', function(req, res){
 	console.log(req.body);
-	req.currentUser(function(err,user){
+	console.log(req.body.name);
+	if(req.body.name !== undefined){
+		req.currentUser(function(err,user){
 			var newRest = {
-			name: req.body.name,
-			location: req.body.display_address,
-			rating: req.body.rating
-		};
-		user.profileFavs.push(newRest);
-		user.save(function(err,success){
-			if(err){return console.log(err)}
-			console.log("success");
+				name: req.body.name,
+				location: req.body.display_address,
+				rating: req.body.rating
+			};
+			// console.log(user)
+			user.profileFavs.push(newRest);
+			user.save(function(err,success){
+				if(err){return console.log(err)}
+					console.log("success");
+			})
+			
 		})
-		console.log(user);
-		})
-	res.send("okay");
-	})
+		res.send("okay");
+	}
+})
 
 app.get('/api/profile', function(req,res){
 	var profileInfo = {};
@@ -97,11 +101,12 @@ app.get('/api/profile', function(req,res){
 		if(err || user === null) {return console.log(err)}
 			profileInfo.data = user.profileFavs
 
-	
-	res.send(profileInfo)
-})
-})
 
+		res.send(profileInfo)
+	})
+})
+app.get("/distance", function (req,res){
+})
 
 app.get('/change/:location', function (req,res){
 	var location = req.params.location;
@@ -113,11 +118,12 @@ app.get('/change/:location', function (req,res){
 })
 app.get('/api/home/:location', function (req,res) {
 	var location = req.params.location;
-		var data = yelp.search({term: "food", location: location}, function(error, data) {
-  console.log(error);
-  res.send(data);
-  
-});
+	console.log(req.params)
+	var data = yelp.search({term: "food", location: location}, function(err, data) {
+		console.log(err);
+		res.send(data);
+
+	});
 })
 app.get('/home', function (req,res) {
 	req.currentUser(function(err,user){
@@ -127,7 +133,7 @@ app.get('/home', function (req,res) {
 		}else{
 			res.sendFile(path.join(views, "home.html"));
 		}
-})
+	})
 })
 app.post('/logout', function(req,res) {
 	req.logout();

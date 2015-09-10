@@ -6,17 +6,18 @@ $(document).ready( function (){
 	$('#logBtn').click(function(e){
 		e.preventDefault();
 		$.post("/profileFavs", restInfo, function(res){
-			console.log(res);
+			console.log(res)
 		})
 
 	})
+
+
 
 	$("#profileBtn").click(function(e){
 		$.get("/api/profile", function (res){
 			$('#profileFavs').empty()
 			var profileTemplate = _.template($("#pfTemplate").html());
 			res.data.forEach(function(el) {
-				console.log(el);
 				var favHtml = profileTemplate(el);
 				$('#profileFavs').append(favHtml);
 			} )
@@ -26,6 +27,7 @@ $(document).ready( function (){
 	$('#random').click( function(e){
 		console.log(locat)
 		$.get('api/home/' + locat, function (res){
+			console.log(res)
 			infoHandler(res);
 		}) 
 		
