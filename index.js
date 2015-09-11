@@ -122,7 +122,6 @@ app.get('/change/:location', function (req,res){
 	console.log(location);
 	var data = yelp.search({term: "food", location: location}, function (err, data){
 		if(err){console.log(err);};
-		console.log(data);
 		res.send(data);
 	})
 })
@@ -160,6 +159,6 @@ app.post('/logout', function(req,res) {
 	res.redirect("/");
 })
 
-app.listen(3000, function() {
+    app.listen((process.env.PORT || 3000), function() {
 	console.log("Server is running on localhost:3000");
 })
