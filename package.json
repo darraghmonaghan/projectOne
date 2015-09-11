@@ -1,6 +1,6 @@
 { "scripts": {
     "start": "node index.js",
-    "postinstall": "bower install"   // <---- only need this line if you're using Bower
+    "postinstall": "bower install" 
    },
   "name": "project_one",
   "version": "1.0.0",
