@@ -85,6 +85,21 @@ body {
 .round-button-circle:hover {
 	background:#30588e;
 }
+#rest-ul {
+	margin-top: 30px;
+	margin: 0 auto;
+}
+#rest-ul li {
+	list-style-type: none;
+	text-align: center;
+	font-size: 14;
+	font-family: verdana;
+}
+
+.round-button {
+	margin: 0;
+
+}
 .round-button a {
     display:block;
 	/*float:left*/
@@ -100,4 +115,16 @@ body {
     font-size:1.2em;
     font-weight:bold;
     text-decoration:none;
+}
+.newButton:hover {
+	background:#30588e;
+}
+.newButton {
+	height: 200px;
+	width: 200px;
+	border-radius: 50%;
+	background-color: black;
+	color: white;
+	line-height: 100px;
+	box-shadow: 0 0 3px gray;
 }
