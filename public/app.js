@@ -108,6 +108,7 @@ function renderRandom(restInfo){
 }
 function infoHandler (res) {
 			restInfo = {};
+			console.log(res)
 			var index = Math.floor(Math.random() * res.businesses.length -1);
 			restInfo.name = res.businesses[index].name;
 			restInfo.rating = res.businesses[index].rating;

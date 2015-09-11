@@ -7,7 +7,7 @@ db = require('./models')
 
 var yelp = require("yelp").createClient({
 	consumer_key: "s3lPNTsNXkslKK6OOgq3fQ", 
-	consumer_secret: "-frcd7rejOgUIURceGKNYlxOqEk",
+	consumer_secret:"-frcd7rejOgUIURceGKNYlxOqEk",
 	token: "jdfwlZuFMbhEPCAYvamHUCySlYg-aSaV",
 	token_secret: "PflgYZRBFapq4s6aFwlhFIhikb4"
 });
