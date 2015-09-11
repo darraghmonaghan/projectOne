@@ -152,7 +152,7 @@ function getMap () {
     title: "HEYO"
 })
 		markers.push(marker)
-setMapOnAll(map);
+marker.setMap(map);
 };
 
 function locHandler () { 
@@ -173,7 +173,7 @@ function positionHandler () {
 	var marker = new google.maps.Marker({
     		position: restaurantLatLng,
     		map: map,
-   			title: ""
+   			title: restInfo.name
 		})
 	markers.push(marker)
 setMapOnAll(map);
