@@ -83,7 +83,6 @@ app.post('/profileFavs', function(req, res){
 				location: req.body.display_address,
 				rating: req.body.rating
 			};
-			// console.log(user)
 			user.profileFavs.push(newRest);
 			user.save(function(err,success){
 				if(err){return console.log(err)}
@@ -109,11 +108,13 @@ app.get("/radChange/:location/:distance", function (req,res){
 	console.log(req.params)
 	var location= req.params.location
 	var distance = req.params.distance
+	console.log(distance)
 	var data = yelp.search({term: "food", location: location, radius_filter: distance}, function(err,data){
 		if(err){console.log(err);}
-		console.log(data)
 		res.send(data)
+		
 	})
+
 })
 
 app.get('/change/:location', function (req,res){
@@ -121,6 +122,7 @@ app.get('/change/:location', function (req,res){
 	console.log(location);
 	var data = yelp.search({term: "food", location: location}, function (err, data){
 		if(err){console.log(err);};
+		console.log(data);
 		res.send(data);
 	})
 })

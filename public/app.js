@@ -2,6 +2,10 @@ var locat = "San Francisco";
 var restInfo = {};
 var ind = [];
 var rad;
+var map;
+var markers = [];
+var restaurantLatLng = {};
+var LatLng = { lat: 37.78, lng: -122.44};
 var questions_index;
 var questions = [
 	{question: "Do you Want a bagel?", key: "bagels"},
@@ -12,6 +16,7 @@ var questions = [
 
 ]
 $(document).ready( function (){
+	getMap();
 
 	$('#logBtn').click(function(e){
 		e.preventDefault();
@@ -46,6 +51,8 @@ $(document).ready( function (){
 		var type = questions[questions_index].key;
 		$.get("query/" + locat+'/'+type, function (res){
 			infoHandler(res);
+			positionHandler();
+			
 		})
 		
 
@@ -68,7 +75,9 @@ $(document).ready( function (){
 	$('#random').click( function(e){
 		console.log(locat)
 		$.get('api/home/' + locat, function (res){
+			
 			infoHandler(res);
+			positionHandler(res);
 		}) 
 		
 	})
@@ -78,11 +87,14 @@ $(document).ready( function (){
 		loc = $("#loc").val();
 		if(loc !== ""){
 			locat = loc
+			locHandler();
 			$.get("change/" + locat, function(res){
 				infoHandler(res);});
+				positionHandler();
 		};
 		$('#loc').val("");
 });
+
 
 });
 
@@ -101,6 +113,9 @@ function infoHandler (res) {
 			restInfo.rating = res.businesses[index].rating;
 			restInfo.reviews = res.businesses[index].review_count;
 			restInfo.display_address = res.businesses[index].location.display_address;
+			restInfo.latitude = res.businesses[index].location.coordinate.latitude
+			restInfo.longitude = res.businesses[index].location.coordinate.longitude;
+			console.log(restInfo);
 			renderRandom(restInfo);
 			return(restInfo)
 
@@ -122,6 +137,55 @@ function questionPopulate(){
 				questionPopulate();
 			}
 	}
+function getMap () {
+  map = new google.maps.Map(document.getElementById('map'), {
+    center: LatLng,
+    zoom: 11
+  });
+  console.log("sanity")
+	
+
+		 var marker = new google.maps.Marker({
+    position: LatLng,
+    map: map,
+    title: "HEYO"
+})
+		markers.push(marker)
+setMapOnAll(map);
+};
+
+function locHandler () { 
+		var locArray = $('#loc').val().split(" ");
+		var addr = locArray.join("+");
+		$.get("http://maps.googleapis.com/maps/api/geocode/json?", { "address" : addr}, function (data) {
+			LatLng = data.results[0].geometry.location;
+			
+		getMap();
+		})
+}
+
+function positionHandler () {
+	markers = [];
+	var latitude = restInfo.latitude;
+	var longitude = restInfo.longitude;
+	restaurantLatLng = { lat: latitude, lng: longitude};
+	var marker = new google.maps.Marker({
+    		position: restaurantLatLng,
+    		map: map,
+   			title: ""
+		})
+	markers.push(marker)
+setMapOnAll(map);
+console.log("markerend")
+			
+}
+function setMapOnAll(map) {
+  for (var i = 0; i < markers.length; i++) {
+    markers[i].setMap(map);
+  }
+}
+
+
 
 
 	

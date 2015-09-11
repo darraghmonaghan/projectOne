@@ -8,15 +8,17 @@
   <script src="/vendor/underscore/underscore-min.js"></script>
   <script src="/vendor/bootstrap/dist/js/bootstrap.min.js"></script>
   <link rel="stylesheet" href="/vendor/bootstrap/dist/css/bootstrap.min.css">
-
+  <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBHLett8djBo62dDXj0EjCimF8Rd6E8cxg"></script>
   <script src="/static/app.js"></script>
   <link rel="stylesheet" href="/static/styles.css">
 
 </head>
 <body>
+  
+
 	<h1> </h1>
 
-	<div class = "container">
+	<div class = "container-fluid">
 		<nav class="navbar navbar-default smallernav">
       <div class="container-fluid">
         <div class="navbar-header">
@@ -34,16 +36,23 @@
           </form>
           <form class="navbar-form navbar-right " role="search">
             <div class="form-group">
-              <input type="text" class="form-control smallnav" id = "rad" placeholder="How far?">
+              <input type="text" class="form-control smallnav" id = "rad" placeholder="Distance (mi)">
             </div>
             <button id= "radiusBtn" type="btn" class="btn btn-default">submit</button>
           </form>
         </nav>
+        <div class = "container-fluid">
+        <div class = "row">
+        <div id="map" class="map_column column-sm-4"></div>
+        <div class= "col-sm-4"><ul id="rest-ul"></ul></div>
+        <div class="round-button column-sm-4"><div class="round-button-circle column-sm-4"><a id = "random" class="round-button">Random!</a></div></div>
+        </div>
+       </div>
         
-        <div class="round-button"><div class="round-button-circle"><a id = "random" class="round-button">Random!</a></div></div>
+
 
         <hr>
-        <ul id="rest-ul" class = "col-md-4 float-right"></ul>
+        
       </div>
       <script type="text/template" id="restaurant-template">
       <li><%= name %></li>
@@ -51,10 +60,13 @@
       <li><%= display_address %></li>
       </script>
 
-      
-      <button type="btn" id = "profileBtn" class = "btn btn-primary btn-lg" data-toggle = "modal" data-target = "#profileModal" ><span class = "glyphicon glyphicon-th-list"></span></button>
+
+    
       
     </div>
+    <div class ="container-fluid">
+      <div class ="row">
+         <button type="btn" id = "profileBtn" class = "btn btn-primary btn-lg" data-toggle = "modal" data-target = "#profileModal" ><span class = "glyphicon glyphicon-th-list"></span></button>
     <button type= "btn" id = "logBtn" class= "btn btn-primary btn-lg"><span class = "glyphicon glyphicon-pushpin"></span></button>
     <button type= "btn" id = "questionBtn" data-toggle = "modal" data-target = "#questionsModal" class= "btn btn-primary btn-lg"><span class = "glyphicon glyphicon-cutlery"></span></button>
 
@@ -62,14 +74,15 @@
     <form  method = "post" action = "/logout">
       <input type = "submit" value = "logout" class = "btn btn-primary">
     </form>
-
+  </div>
+  </div>
     <!-- Modal -->
     <div class="modal fade" id="profileModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
       <div class="modal-dialog" role="document">
         <div class="modal-content">
           <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            <h4 class="modal-title" id="myModalLabel">Favorite Restaurants</h4>
+            <h4 class="modal-title" id="myModalLabel">Pinned Restaurants</h4>
           </div>
           <div class="modal-body">
             <ul id = "profileFavs">
@@ -101,13 +114,6 @@
           <li><%= question %></li>
           </script>
 
-          <!--   <ul id = "profileFavs">
-            </ul>
-            <script type="text/template" id="pfTemplate">
-            <li><%= name %> : <%= location %> </li>
-            </script>
-
-          </div> -->
           <div class="modal-footer">
             <button type="btn" id= "nahBtn" class=" btn btn-default"><span class= "glyphicon glyphicon-remove"></button>
             <button type="btn" id= "yupBtn" class=" btn btn-default" data-dismiss= "modal"><span class ="glyphicon glyphicon-ok"></span></button>
